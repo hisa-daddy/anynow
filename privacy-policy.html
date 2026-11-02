@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,13 +16,15 @@
     <a class="logo en" href="/"><i>A</i>AnyNow</a>
     <div class="links">
       <a href="/#products">Products</a>
-      <a href="/privacy-policy">Privacy</a>
+      <a class="lang" href="/en/" lang="en">EN</a>
       <a class="btn btn-primary" href="mailto:info@any-now.com">お問い合わせ</a>
     </div>
   </div>
 </nav>
 <main class="legal">
 <div class="kicker en">EatNow</div>
+<div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">English</button><button type="button" data-set="ja" aria-pressed="false">日本語</button></div>
+<div data-lang="en" lang="en">
 <h1 class="en">Privacy Policy</h1>
 <p class="updated">Last Updated: June 2026</p>
 <div class="doc">
@@ -53,6 +55,40 @@
 <h2>Contact Us</h2>
 <p>ANYNOW LLC<br>Email: <a href="mailto:info@any-now.com">info@any-now.com</a></p>
 </div>
+</div>
+<div data-lang="ja" lang="ja">
+<h1>プライバシーポリシー</h1>
+<p class="updated">最終更新日：2026年6月</p>
+<div class="doc">
+<p>AnyNow合同会社（以下「当社」）は、モバイルアプリ「EatNow」（以下「本アプリ」）を運営しています。</p>
+<p>本プライバシーポリシーは、本アプリのご利用にあたり、当社がどのように情報を収集・利用・保護するかを説明するものです。</p>
+<h2>収集する情報</h2>
+<p>当社は、以下の情報を収集することがあります。</p>
+<ul><li>氏名</li><li>メールアドレス</li><li>プロフィール写真</li><li>ユーザーが投稿した写真・動画</li><li>提携飲食店から提供される店舗情報</li><li>サービス運営に必要なアカウント識別子</li></ul>
+<h2>情報の利用目的</h2>
+<p>当社は、収集した情報を以下の目的で利用します。</p>
+<ul><li>ユーザーアカウントの作成・管理</li><li>飲食店の検索および来店リクエストの提供</li><li>ユーザープロフィールおよび店舗コンテンツの表示</li><li>アプリの機能およびユーザー体験の改善</li><li>お問い合わせへの対応</li><li>不正行為、悪用、不正アクセスの防止</li></ul>
+<h2>情報の共有</h2>
+<p>当社は、個人情報を販売しません。</p>
+<p>当社は、以下の場合に情報を共有することがあります。</p>
+<ul><li>来店リクエストの対応に必要な範囲で、提携飲食店と共有する場合</li><li>サービス運営を支援する委託先と共有する場合</li><li>法令に基づき必要とされる場合</li></ul>
+<h2>情報の保管とセキュリティ</h2>
+<p>当社は、ユーザー情報を不正アクセス、開示、改ざん、破壊から保護するために合理的な措置を講じます。</p>
+<p>ただし、電子的な保管・通信の方法で完全に安全なものはありません。</p>
+<h2>ユーザーコンテンツ</h2>
+<p>ユーザーは、写真、動画、プロフィール情報を投稿できます。</p>
+<p>コンテンツを投稿することにより、ユーザーはEatNowがサービス運営の目的でそのコンテンツをサービス内に表示する権利を許諾するものとします。</p>
+<h2>子どものプライバシー</h2>
+<p>本アプリは、13歳未満の方を対象としていません。</p>
+<p>当社は、子どもの個人情報を故意に収集することはありません。</p>
+<h2>本ポリシーの変更</h2>
+<p>当社は、本プライバシーポリシーを随時更新することがあります。</p>
+<p>変更内容は、改定日とともに本ページに掲載します。</p>
+<h2>お問い合わせ</h2>
+<p>AnyNow合同会社<br>メール：<a href="mailto:info@any-now.com">info@any-now.com</a></p>
+</div>
+<p class="tr-note">※ 本日本語版は参考訳です。英語版と内容に相違がある場合は、英語版が優先されます。</p>
+</div>
 </main>
 <footer>
   <div class="wrap">
@@ -60,5 +96,17 @@
     <span class="flinks"><a href="/privacy-policy">Privacy Policy</a><a href="/account-delete">Account delete</a></span>
   </div>
 </footer>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  function set(l){
+    document.querySelectorAll('[data-lang]').forEach(function(e){e.classList.toggle('on', e.getAttribute('data-lang')===l);});
+    document.querySelectorAll('.lang-switch button').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.set===l);});
+    document.documentElement.lang = l;
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b){b.addEventListener('click', function(){set(b.dataset.set); history.replaceState(null,'', b.dataset.set==='ja' ? '#ja' : location.pathname);});});
+  set(location.hash==='#ja' ? 'ja' : 'en');
+})();
+</script>
 </body>
 </html>

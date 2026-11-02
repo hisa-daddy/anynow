@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,13 +16,15 @@
     <a class="logo en" href="/"><i>A</i>AnyNow</a>
     <div class="links">
       <a href="/#products">Products</a>
-      <a href="/privacy-policy">Privacy</a>
+      <a class="lang" href="/en/" lang="en">EN</a>
       <a class="btn btn-primary" href="mailto:info@any-now.com">お問い合わせ</a>
     </div>
   </div>
 </nav>
 <main class="legal">
 <div class="kicker en">EatNow</div>
+<div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">English</button><button type="button" data-set="ja" aria-pressed="false">日本語</button></div>
+<div data-lang="en" lang="en">
 <h1 class="en">Account delete</h1>
 <p class="updated">EatNow Account Deletion</p>
 <div class="doc">
@@ -33,6 +35,20 @@
 <p>Some records may be retained for legal, security, or fraud-prevention purposes.</p>
 <div class="note">Deletion requests are processed within 30 days.</div>
 </div>
+</div>
+<div data-lang="ja" lang="ja">
+<h1>アカウント削除</h1>
+<p class="updated">EatNow アカウントの削除について</p>
+<div class="doc">
+<p>EatNowのアカウントおよび関連データの削除をご希望の場合は、<br><a href="mailto:info@any-now.com?subject=EatNow%20Account%20Deletion">info@any-now.com</a> までメールでご連絡ください。</p>
+<h2>削除されるデータ</h2>
+<ul><li>アカウント情報</li><li>プロフィール情報</li><li>予約（来店リクエスト）履歴</li></ul>
+<h2>保持について</h2>
+<p>法令対応、セキュリティ、不正防止の目的で、一部の記録を保持する場合があります。</p>
+<div class="note">削除のご依頼は、30日以内に対応いたします。</div>
+</div>
+<p class="tr-note">※ 本日本語版は参考訳です。英語版と内容に相違がある場合は、英語版が優先されます。</p>
+</div>
 </main>
 <footer>
   <div class="wrap">
@@ -40,5 +56,17 @@
     <span class="flinks"><a href="/privacy-policy">Privacy Policy</a><a href="/account-delete">Account delete</a></span>
   </div>
 </footer>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  function set(l){
+    document.querySelectorAll('[data-lang]').forEach(function(e){e.classList.toggle('on', e.getAttribute('data-lang')===l);});
+    document.querySelectorAll('.lang-switch button').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.set===l);});
+    document.documentElement.lang = l;
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b){b.addEventListener('click', function(){set(b.dataset.set); history.replaceState(null,'', b.dataset.set==='ja' ? '#ja' : location.pathname);});});
+  set(location.hash==='#ja' ? 'ja' : 'en');
+})();
+</script>
 </body>
 </html>

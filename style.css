@@ -94,7 +94,7 @@
   @media (prefers-reduced-motion:reduce){.float{animation:none}}
 
   @media (max-width:860px){
-    .links a:not(.btn){display:none}
+    .links a:not(.btn):not(.lang){display:none}
     .hero{padding:40px 0 56px}
     .hero .wrap,.grid2,.company{grid-template-columns:1fr}
     .hero-art{max-width:380px}
@@ -124,3 +124,12 @@
   .legal a{color:var(--brand);font-weight:700}
   .note{background:var(--brand-soft);border-radius:16px;padding:18px 22px;margin:18px 0}
   @media (max-width:480px){.legal .doc{padding:26px 22px}}
+
+  .links .lang{color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700}
+  .links .lang:hover{color:var(--brand);border-color:var(--brand)}
+  .lang-switch{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px;margin:0 0 24px}
+  .lang-switch button{border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:6px 16px;border-radius:999px;cursor:pointer}
+  .lang-switch button[aria-pressed="true"]{background:var(--brand);color:#fff}
+  .js [data-lang]{display:none}
+  .js [data-lang].on{display:block}
+  .tr-note{font-size:13px;color:var(--muted);margin-top:24px}
