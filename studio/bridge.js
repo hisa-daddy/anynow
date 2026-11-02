@@ -48,3 +48,8 @@ window.eatnowDesktop = {
   },
   setLang() {},
 };
+
+// Installed on a phone's home screen, the studio opens from these cached files even offline (sw.js).
+try {
+  navigator.serviceWorker?.register('./sw.js');
+} catch {}

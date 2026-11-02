@@ -41,6 +41,7 @@ const ICON_PATHS = {
   warn: '<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.3h.01" stroke-width="2.4"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
   upload: '<path d="M12 15.5V4M7 8.5 12 4l5 4.5M4.5 14.5v5h15v-5"/>',
+  share: '<path d="M12 14V3.5M8 7.5l4-4 4 4M8.5 10.5H5.5v10h13v-10h-3"/>',
   list: '<path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01" stroke-width="2.2"/>',
   heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>',
   glass: '<path d="M7 3.5h10l-.6 5.5a4.4 4.4 0 0 1-8.8 0zM12 13.5V20M8.5 20.5h7"/>',

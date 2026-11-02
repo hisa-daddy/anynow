@@ -802,6 +802,21 @@ async function post() {
   renderExport();
 }
 
+// On a phone, the browser's download puts the video in Files, not Photos; the share sheet
+// ("Save Video" on iPhone) does, and also hands it to other apps.
+const videoFile = () => new File([state.result.blob], fileName(state.result.ext), { type: state.result.blob.type });
+const canShare = () => Boolean(state.result && navigator.canShare?.({ files: [videoFile()] }));
+
+async function shareVideo() {
+  try {
+    await navigator.share({ files: [videoFile()] });
+  } catch (err) {
+    if (err.name === 'AbortError') return; // closed without choosing
+    state.notice = { kind: 'error', text: s('shareFail') };
+    renderExport();
+  }
+}
+
 // The desktop app saves the video to a file the owner picks.
 async function saveFile() {
   if (!state.result || state.posting) return;
@@ -1136,6 +1151,8 @@ function renderExport() {
                  ${r.profile?.media?.video ? `<p class="hint">${ic('info')}${es('hasVideo')}</p>` : ''}`
               : `<a class="btn btn--pink btn--lg" href="/owner" target="_blank" rel="noopener">${ic('lock')}${es('loginToPost')}</a>`}
           ${savesToFile ? '' : `<a class="btn ${desktop ? 'btn--pink btn--lg' : 'btn--ghost'}" href="${url}" download="${escapeHtml(fileName(ext))}">${ic('download')}${es('save')}</a>`}
+          ${!savesToFile && canShare() ? `<button type="button" class="btn btn--ghost" data-act="share">${ic('share')}${es('share')}</button>
+            <p class="hint">${ic('info')}${es('shareHint')}</p>` : ''}
           <button type="button" class="link-btn" data-act="again">${ic('refresh')}${es('again')}</button>
         </div>
       </div>`;
@@ -1297,6 +1314,7 @@ $('s-export').addEventListener('click', (ev) => {
   else if (act === 'stop') finishRecording(true);
   else if (act === 'post') post();
   else if (act === 'save-file') saveFile();
+  else if (act === 'share') shareVideo();
   else if (act === 'show-file') desktop.showVideo(state.saved);
   else if (act === 'again') {
     clearResult();

@@ -145,6 +145,7 @@ const dict = {
     'st.ready': '動画ができました', 'st.post': 'EatNowに公開', 'st.posting': '公開しています…', 'st.loginToPost': 'ログインして公開',
     'st.posted': '公開しました。フィードとお店のページに表示されます。', 'st.page': 'お店のページを見る',
     'st.save': '端末に保存', 'st.again': '別のバージョンをつくる',
+    'st.share': '共有・写真に保存', 'st.shareHint': 'iPhoneでは「共有・写真に保存」から「ビデオを保存」を選ぶと、写真アプリに入ります。', 'st.shareFail': '共有できませんでした。「端末に保存」で保存してください。',
     'st.sample1': 'きっとお好みの一皿が見つかります', 'st.sample2': '毎朝豊洲から', 'st.sample3': '全国の日本酒', 'st.sample4': 'カウンター8席',
 
     'o.seats': '今の空席', 'o.seatsYes': '空席あり', 'o.seatsNo': '満席',
@@ -333,6 +334,7 @@ const dict = {
     'st.ready': 'Your video is ready', 'st.post': 'Post to EatNow', 'st.posting': 'Posting…', 'st.loginToPost': 'Log in to post',
     'st.posted': 'Posted. It now shows in the feed and on your page.', 'st.page': 'See your page',
     'st.save': 'Save to phone', 'st.again': 'Make another version',
+    'st.share': 'Share or save to Photos', 'st.shareHint': 'On iPhone, choose “Save Video” under “Share or save to Photos” to put it in the Photos app.', 'st.shareFail': "Couldn't share. Use “Save to phone” instead.",
     'st.sample1': "You're bound to find a dish you love", 'st.sample2': 'Fish from Toyosu every morning', 'st.sample3': 'Sake from all over Japan', 'st.sample4': '8 counter seats',
 
     'o.seats': 'Seats now', 'o.seatsYes': 'Seats free', 'o.seatsNo': 'Full',
