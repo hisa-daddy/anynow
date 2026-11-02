@@ -29,8 +29,41 @@
 <div class="kicker en">Contact</div>
 <h1>Contact us</h1>
 <p class="updated">Questions about listing your restaurant, partnerships or the app? Send us a message.</p>
-<div class="form-wrap"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/viewform?embedded=true" title="Contact" loading="lazy">Loading…</iframe></div>
-<p class="form-alt">If the form doesn’t load, <a href="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/viewform" target="_blank" rel="noopener">open it in a new tab</a>.</p>
+<form class="cform" id="cform" action="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/formResponse" method="post" novalidate>
+  <div class="row">
+    <div class="field"><label for="f-name">Name<span class="req">Required</span></label><input type="text" id="f-name" name="entry.703739870" autocomplete="name" placeholder="Your name" required></div>
+    <div class="field"><label for="f-company">Company or restaurant<span class="opt">Optional</span></label><input type="text" id="f-company" name="entry.1291943790" autocomplete="organization" placeholder="Company or restaurant name"></div>
+  </div>
+  <div class="field"><label for="f-email">Email<span class="req">Required</span></label><input type="email" id="f-email" name="entry.2011796171" autocomplete="email" placeholder="you@example.com" required></div>
+  <fieldset class="field"><legend>Inquiry type<span class="req">Required</span></legend><div class="chips"><input type="radio" id="t0" name="entry.997197417" value="店舗の掲載 / Restaurant listing" required><label for="t0">Restaurant listing</label><input type="radio" id="t1" name="entry.997197417" value="提携・協業 / Partnership"><label for="t1">Partnership</label><input type="radio" id="t2" name="entry.997197417" value="アプリについて / About the app"><label for="t2">About the app</label><input type="radio" id="t3" name="entry.997197417" value="取材・メディア / Media"><label for="t3">Media</label><input type="radio" id="t4" name="entry.997197417" value="その他 / Other"><label for="t4">Other</label></div></fieldset>
+  <div class="field"><label for="f-msg">Message<span class="req">Required</span></label><textarea id="f-msg" name="entry.1515746146" placeholder="How can we help?" required></textarea></div>
+  <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <div class="actions"><button class="btn btn-primary" type="submit">Send message</button><span class="err" id="f-err" role="alert"></span></div>
+  <p class="note">We only use your information to respond to your inquiry.</p>
+</form>
+<div class="thanks" role="status">
+  <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h2>Message sent</h2><p>Thank you for reaching out. We will get back to you soon.</p>
+  <p style="margin-top:22px"><a class="btn btn-ghost" href="/en/">Back to home</a></p>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('cform'), err=document.getElementById('f-err'), btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); err.textContent='';
+    if(f.website.value) return;
+    if(!f.checkValidity()){ err.textContent='Please fill in the required fields.'; var bad=f.querySelector(':invalid'); if(bad) bad.focus(); return; }
+    var data=new URLSearchParams();
+    f.querySelectorAll('input[name^="entry."],textarea[name^="entry."]').forEach(function(el){
+      if((el.type==='radio') && !el.checked) return; data.append(el.name, el.value);
+    });
+    btn.disabled=true; btn.textContent='Sending…';
+    fetch(f.action,{method:'POST',mode:'no-cors',body:data})
+      .then(function(){ document.querySelector('main').classList.add('sent'); window.scrollTo({top:0,behavior:'smooth'}); })
+      .catch(function(){ err.textContent='Something went wrong. Please try again later or email info@any-now.com.'; btn.disabled=false; btn.textContent='Send message'; });
+  });
+})();
+</script>
 </main>
 <footer>
   <div class="wrap">
