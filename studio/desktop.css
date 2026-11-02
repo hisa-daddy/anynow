@@ -1,0 +1,150 @@
+/* EatNow Studio (desktop). The studio's own styles (styles.css, studio.css) are made for phones:
+   big touch targets and heavy type. On a computer, with a mouse, the app uses a quieter layer on
+   top: smaller controls, regular and semibold weights only, neutral grays, and pink kept for the
+   one main action in each step. The video itself (drawn in studio-render.js) is not affected. */
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --line: #e5e5ea;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --chrome: #ffffff;
+  --chrome-ink: #1d1d1f;
+  --chrome-muted: #6e6e73;
+  --chrome-line: #ececf0;
+  --field-line: #d2d2d7;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: none;
+}
+
+/* ---------- Type ---------- */
+body { font-size: 13px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.01em; }
+.studio__head h1 { font-size: 22px; }
+.studio__head .muted { font-size: 13px; }
+.lbl, .notice, .error, .chip, .pill, .look, .pctrl__overlay, .clip__range, .clips-empty,
+.field__label, .link-btn, .topbar__link, .lang button, .stepper output, .pick__text { font-weight: 500; }
+.lbl { font-weight: 600; }
+.hint { font-size: 12px; line-height: 1.5; }
+.small { font-size: 12px; }
+
+/* ---------- Top bar ---------- */
+.topbar__inner { padding: 8px 24px; }
+.brand { gap: 8px; }
+.brand__logo { width: 28px; height: 28px; border-radius: 7px; }
+.brand__tag { font-size: 13px; font-weight: 600; color: var(--ink); }
+.topbar__link { font-size: 13px; }
+.desk-settings { background: transparent; border: 0; padding: 4px 6px; border-radius: 6px; font: inherit; cursor: pointer; }
+.desk-settings:hover { background: var(--surface-2); color: var(--ink); }
+/* The web hides top-bar labels on phones and keeps the icons; this button is only a label. */
+.topbar__link.desk-settings span { display: inline; }
+.lang button { font-size: 12px; padding: 2px 9px; }
+
+/* ---------- Layout ---------- */
+.page--wide { padding: 24px 24px 64px; gap: 20px; }
+.studio { gap: 20px; }
+.card { padding: 20px; }
+.studio__steps { gap: 16px; }
+.stack { gap: 12px; }
+.sh { font-size: 14px; gap: 8px; }
+.sh .ic { width: 16px; height: 16px; }
+.sh__n { width: 20px; height: 20px; font-size: 11px; font-weight: 600; background: var(--surface-2); color: var(--ink); }
+
+/* ---------- Controls ---------- */
+.btn { min-height: 30px; padding: 0 14px; border-radius: 7px; font-size: 13px; font-weight: 500; gap: 6px; }
+.btn .ic { width: 15px; height: 15px; }
+.btn--sm { min-height: 26px; padding: 0 10px; font-size: 12px; }
+.btn--lg { min-height: 36px; font-size: 13px; font-weight: 600; }
+.btn--ghost { border-color: var(--field-line); }
+.btn--ghost:hover:not(:disabled) { background: var(--surface-2); }
+.icon-btn { width: 28px; height: 28px; border-radius: 7px; border-color: var(--field-line); }
+.icon-btn--sm { width: 26px; height: 26px; }
+.icon-btn .ic { width: 15px; height: 15px; }
+.link-btn { text-decoration: none; padding: 2px 0; font-size: 12px; }
+.link-btn:hover { color: var(--ink); }
+
+input, select { min-height: 32px; padding: 5px 10px; border-color: var(--field-line); border-radius: 7px; font-size: 13px; }
+/* The system arrow sits flush against the edge; draw our own, inset like the text. */
+select {
+  appearance: none; -webkit-appearance: none; padding-right: 32px;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5' fill='none' stroke='%236e6e73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center / 12px 12px;
+}
+input:focus, select:focus { outline: none; border-color: #8e8e93; box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06); }
+.input--sm input { min-height: 28px; }
+.field { gap: 4px; }
+.field__label { font-size: 12px; color: var(--muted); }
+:focus-visible { outline: 2px solid rgba(0, 113, 227, 0.45); outline-offset: 1px; }
+
+.stepper { border-color: var(--field-line); border-radius: 7px; }
+.stepper--sm button { width: 26px; height: 26px; border-radius: 6px; }
+.stepper--sm output { min-width: 40px; font-size: 12px; }
+
+/* Choices: selected is dark and plain, not colored. */
+.chip { padding: 3px 10px; font-size: 12px; border-radius: 6px; border-color: var(--field-line); }
+.chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pill { font-weight: 500; }
+.notice, .error { font-size: 12px; padding: 8px 10px; border-radius: 8px; }
+
+/* ---------- Studio parts ---------- */
+.pctrl__play.pctrl__play { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); border-color: var(--ink); color: #fff; }
+.pctrl input[type="range"] { accent-color: var(--ink); }
+.pctrl__overlay { font-size: 12px; }
+.pctrl__overlay input { width: 15px; height: 15px; accent-color: var(--ink); }
+.stage { border-radius: 14px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); }
+
+.clip { padding: 10px; border-radius: 10px; gap: 12px; }
+.clip.is-now { background: var(--surface-2); border-color: var(--field-line); }
+.clip__thumb { border-radius: 7px; }
+.clip__no, .clip__kind { font-weight: 600; }
+.clip__range { font-size: 12px; }
+.clip__range input { accent-color: var(--ink); min-height: 22px; }
+.clips-empty { border-width: 1px; border-radius: 10px; font-size: 12px; }
+
+.look { padding: 6px; border-radius: 10px; font-size: 12px; }
+.look[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.look__sw { border-radius: 6px; }
+
+.suggest { padding: 12px; border: 0; border-radius: 10px; background: var(--surface-2); }
+.suggest .btn--ghost { background: var(--surface); }
+.pick { padding: 5px 9px; border-radius: 7px; border-color: var(--field-line); }
+.pick[aria-pressed="true"] { background: var(--surface-2); border-color: var(--ink); box-shadow: none; }
+.pick__text { font-size: 12.5px; }
+.pick__note { font-size: 11px; }
+
+.recbar { height: 6px; }
+.recbar span { background: var(--ink); }
+.result video { border-radius: 10px; }
+
+/* ---------- Settings sheet ---------- */
+.sheet.sheet { width: min(560px, calc(100vw - 32px)); border-radius: 14px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18); }
+.sheet::backdrop { background: rgba(0, 0, 0, 0.25); }
+.desk-form { display: contents; }
+.sheet__bar { padding: 8px 12px; background: var(--surface); }
+.sheet__bar h2 { font-size: 14px; }
+.sheet__bar button { width: 28px; height: 28px; border-radius: 7px; }
+.sheet__bar button:hover { background: var(--surface-2); }
+.sheet__body { padding: 20px; gap: 22px; }
+.sheet h3.sh { font-size: 13px; }
+.desk-ais { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.desk-ai { display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; font-size: 12px; color: var(--muted); }
+.desk-ai:hover { border-color: var(--field-line); }
+.desk-ai.is-on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.desk-ai:has(input:focus-visible) { outline: 2px solid rgba(0, 113, 227, 0.45); outline-offset: 1px; }
+.desk-ai__head { display: flex; align-items: center; gap: 6px; color: var(--ink); font-size: 13px; }
+.desk-ai__head strong { font-weight: 600; }
+.desk-ai__head .ic { width: 16px; height: 16px; }
+.desk-ai__tag { min-height: 1.5em; }
+.desk-ai__stars { display: flex; gap: 1px; }
+.desk-ai__stars .ic { width: 13px; height: 13px; color: var(--field-line); fill: currentColor; stroke: none; }
+.desk-ai__stars .ic.is-on { color: var(--ink); }
+.desk-ai__fact { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+.desk-ai__fact .ic { width: 13px; height: 13px; color: var(--muted); flex: none; }
+.desk-extra { padding: 2px 2px 0; }
+.desk-actions { justify-content: flex-end; }
+.desk-local { gap: 8px; }
+.desk-progress { width: 100%; height: 6px; appearance: none; -webkit-appearance: none; border: 0; border-radius: 3px; overflow: hidden; background: var(--surface-2); }
+.desk-progress::-webkit-progress-bar { background: var(--surface-2); }
+.desk-progress::-webkit-progress-value { background: var(--ink); border-radius: 3px; }
