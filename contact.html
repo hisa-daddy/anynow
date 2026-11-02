@@ -29,8 +29,41 @@
 <div class="kicker en">Contact</div>
 <h1>お問い合わせ</h1>
 <p class="updated">店舗の掲載、提携、アプリに関するご質問など、お気軽にお送りください。</p>
-<div class="form-wrap"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/viewform?embedded=true" title="お問い合わせ" loading="lazy">Loading…</iframe></div>
-<p class="form-alt">フォームが表示されない場合は <a href="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/viewform" target="_blank" rel="noopener">こちらから直接開けます</a>。</p>
+<form class="cform" id="cform" action="https://docs.google.com/forms/d/e/1FAIpQLSdApEZXZ-cslUn1JHFI1c_QHJy-QphHg93XcsdEC0FkfpPqhQ/formResponse" method="post" novalidate>
+  <div class="row">
+    <div class="field"><label for="f-name">お名前<span class="req">必須</span></label><input type="text" id="f-name" name="entry.703739870" autocomplete="name" placeholder="山田 太郎" required></div>
+    <div class="field"><label for="f-company">会社名・店舗名<span class="opt">任意</span></label><input type="text" id="f-company" name="entry.1291943790" autocomplete="organization" placeholder="株式会社〇〇 / 〇〇食堂"></div>
+  </div>
+  <div class="field"><label for="f-email">メールアドレス<span class="req">必須</span></label><input type="email" id="f-email" name="entry.2011796171" autocomplete="email" placeholder="you@example.com" required></div>
+  <fieldset class="field"><legend>お問い合わせの種類<span class="req">必須</span></legend><div class="chips"><input type="radio" id="t0" name="entry.997197417" value="店舗の掲載 / Restaurant listing" required><label for="t0">店舗の掲載</label><input type="radio" id="t1" name="entry.997197417" value="提携・協業 / Partnership"><label for="t1">提携・協業</label><input type="radio" id="t2" name="entry.997197417" value="アプリについて / About the app"><label for="t2">アプリについて</label><input type="radio" id="t3" name="entry.997197417" value="取材・メディア / Media"><label for="t3">取材・メディア</label><input type="radio" id="t4" name="entry.997197417" value="その他 / Other"><label for="t4">その他</label></div></fieldset>
+  <div class="field"><label for="f-msg">お問い合わせ内容<span class="req">必須</span></label><textarea id="f-msg" name="entry.1515746146" placeholder="ご用件をご記入ください" required></textarea></div>
+  <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <div class="actions"><button class="btn btn-primary" type="submit">送信する</button><span class="err" id="f-err" role="alert"></span></div>
+  <p class="note">送信いただいた内容は、お問い合わせへの対応のみに利用します。</p>
+</form>
+<div class="thanks" role="status">
+  <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h2>送信しました</h2><p>お問い合わせありがとうございます。内容を確認のうえ、担当者よりご連絡します。</p>
+  <p style="margin-top:22px"><a class="btn btn-ghost" href="/">トップへ戻る</a></p>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('cform'), err=document.getElementById('f-err'), btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); err.textContent='';
+    if(f.website.value) return;
+    if(!f.checkValidity()){ err.textContent='必須項目を入力してください。'; var bad=f.querySelector(':invalid'); if(bad) bad.focus(); return; }
+    var data=new URLSearchParams();
+    f.querySelectorAll('input[name^="entry."],textarea[name^="entry."]').forEach(function(el){
+      if((el.type==='radio') && !el.checked) return; data.append(el.name, el.value);
+    });
+    btn.disabled=true; btn.textContent='送信中…';
+    fetch(f.action,{method:'POST',mode:'no-cors',body:data})
+      .then(function(){ document.querySelector('main').classList.add('sent'); window.scrollTo({top:0,behavior:'smooth'}); })
+      .catch(function(){ err.textContent='送信できませんでした。時間をおいて再度お試しいただくか、info@any-now.com までご連絡ください。'; btn.disabled=false; btn.textContent='送信する'; });
+  });
+})();
+</script>
 </main>
 <footer>
   <div class="wrap">

@@ -134,8 +134,30 @@
   .js [data-lang].on{display:block}
   .tr-note{font-size:13px;color:var(--muted);margin-top:24px}
 
-  .form-wrap{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:28px}
-  .form-wrap iframe{display:block;width:100%;height:1450px;border:0}
-  .form-alt{font-size:14px;color:var(--muted);margin-top:18px}
-  .form-alt a{color:var(--brand);font-weight:700}
-  @media (max-width:480px){.form-wrap iframe{height:1650px}}
+
+  .cform{background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px 40px;margin-top:28px;display:grid;gap:22px}
+  .cform .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .field label,.field legend{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+  .field .req{color:var(--brand);font-size:12px;margin-left:6px}
+  .field .opt{color:var(--muted);font-size:12px;font-weight:500;margin-left:6px}
+  .field input[type=text],.field input[type=email],.field textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;transition:border-color .15s,box-shadow .15s}
+  .field textarea{min-height:170px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft);background:#fff}
+  fieldset.field{border:0}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chips input{position:absolute;opacity:0;pointer-events:none}
+  .chips label{display:inline-block;margin:0;font-weight:500;font-size:14px;padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--bg);cursor:pointer;transition:all .15s}
+  .chips input:checked+label{background:var(--brand);border-color:var(--brand);color:#fff}
+  .chips input:focus-visible+label{box-shadow:0 0 0 4px var(--brand-soft)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .cform .actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .cform button[type=submit]{border:0;cursor:pointer;font:inherit}
+  .cform button[disabled]{opacity:.6;cursor:wait}
+  .cform .err{color:#B3261E;font-size:14px}
+  .cform .note{font-size:12px;color:var(--muted);background:none;padding:0;margin:0;border-radius:0}
+  .thanks{display:none;background:#fff;border:1px solid var(--line);border-radius:24px;padding:48px 40px;margin-top:28px;text-align:center}
+  .thanks .ok{width:64px;height:64px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),#E2557F)}
+  .thanks h2{margin:0 0 8px}
+  .thanks p{color:var(--muted)}
+  .sent .cform{display:none}.sent .thanks{display:block}
+  @media (max-width:640px){.cform{padding:26px 22px}.cform .row{grid-template-columns:1fr}}
